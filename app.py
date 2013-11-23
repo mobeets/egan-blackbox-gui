@@ -42,9 +42,9 @@ class Root(object):
         next_number = int(number) + 1
         next_link = ''
         if next_number == self.max_number:
-            tweet_msgs = ['[THE END]'.format(TITLE)]
+            tweet_msgs += ['[THE END]'.format(TITLE)]
         else:
-            tweet_msgs = ['[This is the end of chapter {0}. Click the link to continue.] '.format(number, TITLE)]
+            tweet_msgs += ['[This is the end of chapter {0}. Click the link to continue.] '.format(number, TITLE)]
             next_link = '<a href="/chapter/{0}">{1}</a>'.format(next_number, self.fake_tco_link())
         return json.dumps({'tweet_msgs': tweet_msgs, 'next_link': next_link})
 
