@@ -21,6 +21,11 @@
             });
         });
     });
+    function OpenInNewTab(url )
+    {
+      var win=window.open(url, '_blank');
+      win.focus();
+    }
 </script>
 
     
@@ -50,7 +55,7 @@
 
 
 
-<link rel="search" type="application/opensearchdescription+xml" href="https://www.twitter.com/opensearch.xml"" title="Twitter">
+<link rel="search" type="application/opensearchdescription+xml" href="https://www.twitter.com/opensearch.xml" title="Twitter">
 
     
     
@@ -419,7 +424,7 @@ data-fouc-class-names="swift-loading"
           </h1>
 
             
-            <div role="navigation" style="display: inline-block;"><ul class="nav js-global-actions" id="global-actions" ><li id="global-nav-home" class="home" data-global-action="home"> <a class="js-nav js-tooltip" href="https://www.twitter.com/"" data-component-term="home_nav" data-nav="home" title="Home"> <span class="new-wrapper"><i class="nav-home"></i><i class="nav-new"></i></span> <span class="text">Home</span>  </a> </li> <li class="people" data-global-action="connect"> <a class="js-nav js-tooltip" href="https://www.twitter.com/i/connect"" data-component-term="connect_nav" data-nav="connect" title="Connect"> <span class="new-wrapper"><i class="nav-people"></i><i class="nav-new"></i></span> <span class="text">Connect</span>  </a> </li> <li class="topics" data-global-action="discover"> <a class="js-nav js-tooltip" href="https://www.twitter.com/i/discover"" data-component-term="discover_nav" data-nav="discover" title="Discover"> <span class="new-wrapper"><i class="nav-topics"></i><i class="nav-new"></i></span> <span class="text">Discover</span>  </a> </li>  <li class="profile" data-global-action="profile"> <a class="js-nav js-tooltip" href="https://www.twitter.com/jehosafet"" data-component-term="profile_nav" data-nav="profile" title="Me"> <span class="new-wrapper"><i class="nav-me"></i><i class="nav-new"></i></span> <span class="text">Me</span>  </a> </li> </ul></div>
+            <div role="navigation" style="display: inline-block;"><ul class="nav js-global-actions" id="global-actions" ><li id="global-nav-home" class="home" data-global-action="home"> <a class="js-nav js-tooltip" href="/" data-component-term="home_nav" data-nav="home" title="Home"> <span class="new-wrapper"><i class="nav-home"></i><i class="nav-new"></i></span> <span class="text">Home</span>  </a> </li> <li class="people" data-global-action="connect"> <a class="js-nav js-tooltip" href="https://www.twitter.com/i/connect" data-component-term="connect_nav" data-nav="connect" title="Connect"> <span class="new-wrapper"><i class="nav-people"></i><i class="nav-new"></i></span> <span class="text">Connect</span>  </a> </li> <li class="topics" data-global-action="discover"> <a class="js-nav js-tooltip" href="https://www.twitter.com/i/discover" data-component-term="discover_nav" data-nav="discover" title="Discover"> <span class="new-wrapper"><i class="nav-topics"></i><i class="nav-new"></i></span> <span class="text">Discover</span>  </a> </li>  <li class="profile" data-global-action="profile"> <a class="js-nav js-tooltip" href="https://www.twitter.com/jehosafet" data-component-term="profile_nav" data-nav="profile" title="Me"> <span class="new-wrapper"><i class="nav-me"></i><i class="nav-new"></i></span> <span class="text">Me</span>  </a> </li> </ul></div>
 
           
           <div class="pull-right" style="display: inline-block;"> <div role="search">
@@ -506,12 +511,12 @@ data-fouc-class-names="swift-loading"
 
   <i class="topbar-divider"></i>
   <div class="dm-nav">
-    <button type="button" class="global-dm-nav js-tooltip" data-placement="bottom" title="Direct messages">
+    <button type="button" class="global-dm-nav js-tooltip" data-placement="bottom" title="Direct messages" style="visibility: hidden; display: none;">
       <i class="global-dm-envelope icon"></i>
       <span class="dm-new"></span>
     </button>
   </div>
- <i class="topbar-divider"></i> <ul class="nav"> <li class="me dropdown session js-session" data-global-action="t1me" id="user-dropdown"> <a href="https://www.twitter.com/settings/account"" class="js-tooltip dropdown-toggle js-dropdown-toggle" id="user-dropdown-toggle" title="Settings and help" data-placement="bottom">  <span class="new-wrapper"><span class="icon nav-session"><span class="visuallyhidden">Settings and help</span></span><span class="icon nav-new"></span></span> <span class="caret"></span>   </a>   <div class="dropdown-menu">
+ <i class="topbar-divider"></i> <ul class="nav"> <li class="me dropdown session js-session" data-global-action="t1me" id="user-dropdown"> <a href="https://github.com/mobeets/egan-blackbox-gui" class="js-tooltip dropdown-toggle js-dropdown-toggle" id="user-dropdown-toggle" title="Settings and help" data-placement="bottom">  <span class="new-wrapper"><span class="icon nav-session"><span class="visuallyhidden">Settings and help</span></span><span class="icon nav-new"></span></span> <span class="caret"></span>   </a>   <div class="dropdown-menu">
     <div class="dropdown-caret">
       <span class="caret-outer"></span>
       <span class="caret-inner"></span>
@@ -521,7 +526,7 @@ data-fouc-class-names="swift-loading"
       <li class="current-user" data-name="profile">
         
 
-<a href="https://www.twitter.com/settings/profile""
+<a href="https://www.twitter.com/settings/profile"
    class="account-summary account-summary-small"
    data-nav="edit_profile">
   <div class="content">
@@ -541,7 +546,7 @@ data-fouc-class-names="swift-loading"
 
       <li class="dropdown-divider"></li>
       
-      <li data-name="lists"><a href="https://www.twitter.com/jehosafet/lists"" data-nav="all_lists">Lists</a></li>
+      <li data-name="lists"><a href="https://www.twitter.com/jehosafet/lists" data-nav="all_lists">Lists</a></li>
       <li class="dropdown-divider"></li>
 
       
@@ -564,7 +569,7 @@ data-fouc-class-names="swift-loading"
       <li class="dropdown-divider"></li>
 
       
-      <li><a href="https://www.twitter.com/settings/account"" data-nav="settings" class="js-nav">Settings</a></li>
+      <li><a href="https://github.com/mobeets/egan-blackbox-gui" data-nav="settings" class="js-nav">Settings</a></li>
 
       
       <li class="js-signout-button" id="signout-button" data-nav="logout">
@@ -578,7 +583,7 @@ data-fouc-class-names="swift-loading"
 
     </ul>
   </div>
- </li> </ul>  <i class="topbar-divider"></i> <div role="complementary" aria-labelledby="global-new-tweet-button" class="well topbar-tweet-btn"> <button id="global-new-tweet-button" type="button" class="btn btn-tweet js-global-new-tweet js-tooltip" data-placement="bottom" data-component-term="new_tweet_button" title="Compose new Tweet"> <i class="nav-tweet"><span class="visuallyhidden">Compose new Tweet</span></i> </button> </div>   </div>
+ </li> </ul>  <i class="topbar-divider"></i> <div role="complementary" aria-labelledby="global-new-tweet-button" class="well topbar-tweet-btn"> <button id="global-new-tweet-button" type="button" class="btn btn-tweet js-global-new-tweet js-tooltip" data-placement="bottom" data-component-term="new_tweet_button" title="Compose new Tweet" style="visibility: hidden; display: none;"> <i class="nav-tweet"><span class="visuallyhidden">Compose new Tweet</span></i> </button> </div>   </div>
 
 
         
@@ -1025,8 +1030,8 @@ data-item-id="207985498579419136"
       <li class="report-spam-text pretty-link"><button type="button" class="dropdown-link">Report <s>@</s>NYerFiction for spam</button></li>
       <li class="hide-suggestion-text"><button type="button" class="dropdown-link">Hide this suggestion</button></li>
       <li class="dropdown-divider is-following"></li>
-      <li class="retweet-on-text"><button type="button" class="dropdown-link">Turn on Retweets</button></li>
-      <li class="retweet-off-text"><button type="button" class="dropdown-link">Turn off Retweets</button></li>
+      <li class="retweet-on-text"><button type="button" class="dropdown-link">Turn on View tweets</button></li>
+      <li class="retweet-off-text"><button type="button" class="dropdown-link">Turn off View tweets</button></li>
           <li class="device-notifications-on-text"><button type="button" class="dropdown-link">Turn on mobile notifications</button></li>
           <li class="device-notifications-off-text"><button type="button" class="dropdown-link">Turn off mobile notifications</button></li>
       <li class="dropdown-divider is-embeddable"></li>
@@ -1039,9 +1044,9 @@ data-item-id="207985498579419136"
 
       
 
-<button class="js-follow-btn follow-button btn" type="button">
+<button class="js-follow-btn follow-button btn" type="button" onclick="OpenInNewTab('http://blog.jehosafet.com/2013/11/jennifer-egans-black-box-full-text.html');">
   <span class="button-text follow-text">
-     <i class="follow"></i> Follow
+     <i class="follow"></i> Huh ?
     
   </span>
   <span class="button-text following-text">
@@ -1066,23 +1071,23 @@ data-item-id="207985498579419136"
     </div>
 
 
-              <a  class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="https://www.twitter.com/NYerFiction"" data-user-id="494414941">
+              <a  class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="http://www.newyorker.com/fiction/features/2012/06/04/120604fi_fiction_egan" data-user-id="494414941">
     <img class="avatar js-action-profile-avatar" src="https://pbs.twimg.com/profile_images/1832178875/50253_92470227538_3764877_n_normal.jpg" alt="">
     <strong class="fullname js-action-profile-name show-popup-with-id">Black Box<span class="icon verified"><span class="visuallyhidden">Verified account</span></span></strong>
-    <span>&rlm;</span><span class="username js-action-profile-name"><s></s><b>Jennifer Egan</b></span>
+    <span>&rlm;</span><span class="username js-action-profile-name"><s></s><b>by Jennifer Egan</b></span>
     
 
   </a>
 
             
             <small class="time">
-    <a href="https://www.twitter.com/NYerFiction/status/207985498579419136"" class="tweet-timestamp js-permalink js-nav js-tooltip" title="7:03 PM - 30 May 12" ><span class="_timestamp js-short-timestamp " data-time="1338422581" data-long-form="true">30 May 12</span></a>
+    <a href="https://www.twitter.com/NYerFiction/status/207985498579419136" class="tweet-timestamp js-permalink js-nav js-tooltip" title="7:03 PM - 30 May 12" ><span class="_timestamp js-short-timestamp " data-time="1338422581" data-long-form="true">30 May 12</span></a>
 </small>
 
           </div>
         </div>
       
-      <p class="js-tweet-text tweet-text" style="height:80px;"><span id="typed"></span><span id="tcolink"></span></p>
+      <p class="js-tweet-text tweet-text" style="height:100px;"><span id="typed"></span><span id="tcolink"></span></p>
 
 
       
@@ -1100,35 +1105,35 @@ data-item-id="207985498579419136"
 
 <ul class="tweet-actions js-actions">
   <li class="action-reply-container">
-    <a role="button" class="with-icn js-action-reply js-tooltip" data-modal="tweet-reply" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn js-action-reply js-tooltip" data-modal="tweet-reply" href="#">
       <span class="icon sm-reply"></span>
-      <b>Reply</b>
+      <b>Pause</b>
     </a>
   </li>
   <li class="action-rt-container js-toggle-state js-toggle-rt">
-    <a role="button" class="with-icn retweet js-tooltip" data-modal="tweet-retweet" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn retweet js-tooltip" data-modal="tweet-retweet" href="#">
       <span class="icon sm-rt"></span>
-      <b>Retweet</b>
+      <b>View tweet</b>
     </a>
-    <a role="button" class="with-icn undo-retweet js-tooltip" data-modal="tweet-retweet" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn undo-retweet js-tooltip" data-modal="tweet-retweet" href="#">
       <span class="icon sm-rt"></span>
-      <b>Retweeted</b>
+      <b>View tweeted</b>
     </a>
   </li>
   <li class="action-del-container">
-    <a role="button" class="with-icn js-action-del js-tooltip" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn js-action-del js-tooltip" href="#">
       <span class="icon sm-trash"></span>
       <b>Delete</b>
     </a>
   </li>
   <li class="action-fav-container js-toggle-state js-toggle-fav">
-    <a role="button" class="with-icn favorite js-tooltip" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn favorite js-tooltip" href="#">
       <span class="icon sm-fav"></span>
-      <b>Favorite</b>
+      <b>Link here</b>
     </a>
-    <a role="button" class="with-icn unfavorite js-tooltip" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn unfavorite js-tooltip" href="#">
       <span class="icon sm-fav"></span>
-      <b>Favorited</b>
+      <b>Link hered</b>
     </a>
   </li>
 
@@ -1193,7 +1198,7 @@ data-item-id="207985498579419136"
     </div>
   <div class="client-and-actions">
     <span class="metadata">
-      <span>7:03 PM - 30 May 12</span>
+      <span>7:03 PM - 30 May 12 / via <a href="https://twitter.com/nyerfiction">@NYerFiction</a></span>
 
       
 
@@ -1271,23 +1276,23 @@ data-item-id="207985498579419136"
 
       
       <div class="stream-item-header">
-          <a  class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="https://www.twitter.com/NYerFiction"" data-user-id="494414941">
+          <a  class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="http://www.newyorker.com/fiction/features/2012/06/04/120604fi_fiction_egan" data-user-id="494414941">
     <img class="avatar js-action-profile-avatar" src="https://pbs.twimg.com/profile_images/1832178875/50253_92470227538_3764877_n_normal.jpg" alt="">
     <strong class="fullname js-action-profile-name show-popup-with-id">Black Box<span class="icon verified"><span class="visuallyhidden">Verified account</span></span></strong>
-    <span>&rlm;</span><span class="username js-action-profile-name"><s></s><b>Jennifer Egan</b></span>
+    <span>&rlm;</span><span class="username js-action-profile-name"><s></s><b>by Jennifer Egan</b></span>
     
 
   </a>
 
         <small class="time">
-    <a href="https://www.twitter.com/NYerFiction/status/207985498579419136"" class="tweet-timestamp js-permalink js-nav js-tooltip" title="7:03 PM - 30 May 12" ><span class="_timestamp js-short-timestamp " data-time="1338422581" data-long-form="true">30 May 12</span></a>
+    <a href="https://www.twitter.com/NYerFiction/status/207985498579419136" class="tweet-timestamp js-permalink js-nav js-tooltip" title="7:03 PM - 30 May 12" ><span class="_timestamp js-short-timestamp " data-time="1338422581" data-long-form="true">30 May 12</span></a>
 </small>
 
       </div>
 
       
 
-      <p class="js-tweet-text tweet-text" style="height:80px;"><span id="typed"></span><span id="tcolink"></span></p>
+      <p class="js-tweet-text tweet-text" style="height:100px;"><span id="typed"></span><span id="tcolink"></span></p>
 
       
       <div class="stream-item-footer">
@@ -1304,35 +1309,35 @@ data-item-id="207985498579419136"
 
 <ul class="tweet-actions js-actions">
   <li class="action-reply-container">
-    <a role="button" class="with-icn js-action-reply js-tooltip" data-modal="tweet-reply" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn js-action-reply js-tooltip" data-modal="tweet-reply" href="#">
       <span class="icon sm-reply"></span>
-      <b>Reply</b>
+      <b>Pause</b>
     </a>
   </li>
   <li class="action-rt-container js-toggle-state js-toggle-rt">
-    <a role="button" class="with-icn retweet js-tooltip" data-modal="tweet-retweet" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn retweet js-tooltip" data-modal="tweet-retweet" href="#">
       <span class="icon sm-rt"></span>
-      <b>Retweet</b>
+      <b>View tweet</b>
     </a>
-    <a role="button" class="with-icn undo-retweet js-tooltip" data-modal="tweet-retweet" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn undo-retweet js-tooltip" data-modal="tweet-retweet" href="#">
       <span class="icon sm-rt"></span>
-      <b>Retweeted</b>
+      <b>View tweeted</b>
     </a>
   </li>
   <li class="action-del-container">
-    <a role="button" class="with-icn js-action-del js-tooltip" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn js-action-del js-tooltip" href="#">
       <span class="icon sm-trash"></span>
       <b>Delete</b>
     </a>
   </li>
   <li class="action-fav-container js-toggle-state js-toggle-fav">
-    <a role="button" class="with-icn favorite js-tooltip" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn favorite js-tooltip" href="#">
       <span class="icon sm-fav"></span>
-      <b>Favorite</b>
+      <b>Link here</b>
     </a>
-    <a role="button" class="with-icn unfavorite js-tooltip" href="https://www.twitter.com#"">
+    <a role="button" class="with-icn unfavorite js-tooltip" href="#">
       <span class="icon sm-fav"></span>
-      <b>Favorited</b>
+      <b>Link hered</b>
     </a>
   </li>
 
@@ -1371,7 +1376,7 @@ data-item-id="207985498579419136"
 
 
             
-<a class="details with-icn js-details" href="https://www.twitter.com/NYerFiction/status/207985498579419136"">
+<a class="details with-icn js-details" href="https://www.twitter.com/NYerFiction/status/207985498579419136">
   <span class="details-icon js-icon-container">
     
   </span>
@@ -1418,12 +1423,13 @@ data-item-id="207985498579419136"
 
 
     
-  <div class="inline-reply-tweetbox swift">
+  <div class="inline-reply-tweetbox swift"><div class="module site-footer slim-site-footer">
+  <div class="flex-module"><ul class=""><li>PREV  -</li><li>CHAPTER ${CHAPTER}</li><li>-  NEXT</li></ul></div></div>
         <form class="tweet-form condensed "
       method="post"
       target="tweet-post-iframe"
         data-default-text="@NYerFiction "
-        data-condensed-text="Reply to @NYerFiction "
+        data-condensed-text="Pause to @NYerFiction "
       action="//upload.twitter.com/i/tweet/create_with_media.iframe"
       enctype="multipart/form-data">
   <input type="hidden" name="post_authenticity_token" class="auth-token">
@@ -1644,7 +1650,7 @@ data-item-id="207985498579419136"
   <div class="stream-end-inner">
     <h2 class="title">Loading seems to be taking a while.</h2>
     <p>
-      Twitter may be over capacity or experiencing a momentary hiccup. <a href="https://www.twitter.com#"" class="try-again-after-whale">Try again</a> or visit <a target="_blank" href="http://status.twitter.com">Twitter Status</a> for more information.
+      Twitter may be over capacity or experiencing a momentary hiccup. <a href="#" class="try-again-after-whale">Try again</a> or visit <a target="_blank" href="http://status.twitter.com">Twitter Status</a> for more information.
     </p>
   </div>
 </div>
@@ -1674,7 +1680,7 @@ data-item-id="207985498579419136"
     <div class="flex-module-inner js-items-container">
       <ul class="clearfix">
         <li class="copyright">&copy; 2013 Twitter</li>
-        <li><a href="https://www.twitter.com/about"">About</a></li>
+        <li><a href="https://www.twitter.com/about">About</a></li>
         <li><a href="//support.twitter.com">Help</a></li>
           <li><a href="//support.twitter.com/articles/20170451">Ads</a></li>
       </ul>
@@ -1730,7 +1736,7 @@ data-item-id="207985498579419136"
     <div class="message ">
   <div class="message-inside">
     <span class="message-text"></span>
-        <a class="dismiss" href="https://www.twitter.com#"">&times;</a>
+        <a class="dismiss" href="#">&times;</a>
   </div>
 </div>
 </div>
@@ -1746,7 +1752,7 @@ data-item-id="207985498579419136"
       </span>
 </button>
 
-      <a class="gridview grid-action" href="https://www.twitter.com#"">
+      <a class="gridview grid-action" href="#">
           <span class="icon grid-icon">
             <span class="visuallyhidden"></span>
           </span>
@@ -1794,7 +1800,7 @@ data-item-id="207985498579419136"
   <div class="twttr-dialog-inside">
     <div class="twttr-dialog-body clearfix">
       <div class="dm-error js-dm-error">
-  <a href="https://www.twitter.com#"" class="js-dismiss">
+  <a href="#" class="js-dismiss">
     <i class="close"></i>
   </a>
   <span class="dm-error-text"></span>
@@ -1820,14 +1826,14 @@ data-item-id="207985498579419136"
     <div id="dm_dialog_conversation" class="modal-content">
   
   <div class="twttr-dialog-header modal-header">
-    <h3><a class="js-dm-header-title" href="https://www.twitter.com#"">Direct messages</a> › with <span class="dm_dialog_real_name"></span></h3>
+    <h3><a class="js-dm-header-title" href="#">Direct messages</a> › with <span class="dm_dialog_real_name"></span></h3>
   </div>
 
   
   <div class="twttr-dialog-inside">
     <div class="twttr-dialog-body clearfix">
         <div class="dm-error js-dm-error">
-  <a href="https://www.twitter.com#"" class="js-dismiss">
+  <a href="#" class="js-dismiss">
     <i class="close"></i>
   </a>
   <span class="dm-error-text"></span>
@@ -1867,7 +1873,7 @@ data-item-id="207985498579419136"
     <div id="dm_dialog_new" class="modal-content">
   
   <div class="twttr-dialog-header modal-header">
-    <h3><a href="https://www.twitter.com#"">Direct messages</a> › New</h3>
+    <h3><a href="#">Direct messages</a> › New</h3>
   </div>
 
   
@@ -1953,7 +1959,7 @@ data-item-id="207985498579419136"
 
         <div class="dm-convo-placeholder">
           <div class="dm-error js-dm-error">
-  <a href="https://www.twitter.com#"" class="js-dismiss">
+  <a href="#" class="js-dismiss">
     <i class="close"></i>
   </a>
   <span class="dm-error-text"></span>
@@ -2305,14 +2311,14 @@ data-item-id="207985498579419136"
 
 
       <div class="modal-header">
-        <h3 class="modal-title">Retweet this to your followers?</h3>
+        <h3 class="modal-title">View tweet this to your followers?</h3>
       </div>
 
       <div class="modal-body modal-tweet"></div>
 
       <div class="modal-footer">
         <button class="btn cancel-action js-close">Cancel</button>
-        <button class="btn primary-btn retweet-action">Retweet</button>
+        <button class="btn primary-btn retweet-action">View tweet</button>
       </div>
     </div>
   </div>
@@ -2384,19 +2390,19 @@ data-item-id="207985498579419136"
                 <td class="shortcut">
                   <b class="sc-key">f</b>
                 </td>
-                <td class="shortcut-label">Favorite</td>
+                <td class="shortcut-label">Link here</td>
               </tr>
               <tr>
                 <td class="shortcut">
                   <b class="sc-key">r</b>
                 </td>
-                <td class="shortcut-label">Reply</td>
+                <td class="shortcut-label">Pause</td>
               </tr>
               <tr>
                 <td class="shortcut">
                   <b class="sc-key">t</b>
                 </td>
-                <td class="shortcut-label">Retweet</td>
+                <td class="shortcut-label">View tweet</td>
               </tr>
               <tr>
                 <td class="shortcut">
@@ -2524,7 +2530,7 @@ data-item-id="207985498579419136"
                 <td class="shortcut">
                   <b class="sc-key">g</b> <b class="sc-key">f</b>
                 </td>
-                <td class="shortcut-label">Favorites</td>
+                <td class="shortcut-label">Link heres</td>
               </tr>
               <tr>
                 <td class="shortcut">
@@ -2918,11 +2924,11 @@ data-item-id="207985498579419136"
           <p>Please choose the topic that best defines your issue. Once you complete and submit the form, your report will be filed with Twitter.</p>
           <ul class="abuse-links">
             
-            <li><a href="https://www.twitter.com#"" class="report-impersonation-link hide-focus" data-abuse-type="impersonation" target="_blank">Impersonation</a></li>
-            <li><a href="https://www.twitter.com#"" class="report-trademark-link" data-abuse-type="trademark" target="_blank">Trademarks</a></li>
-            <li><a href="https://www.twitter.com#"" class="report-harassment-link" data-abuse-type="harassment" target="_blank">Harassment</a></li>
-            <li><a href="https://www.twitter.com#"" class="report-self-harm-link" data-abuse-type="report_self_harm" target="_blank">Report self harm</a></li>
-            <li><a href="https://www.twitter.com#"" class="report-ads-link" data-abuse-type="report_an_ad" target="_blank">Report an ad</a></li>
+            <li><a href="#" class="report-impersonation-link hide-focus" data-abuse-type="impersonation" target="_blank">Impersonation</a></li>
+            <li><a href="#" class="report-trademark-link" data-abuse-type="trademark" target="_blank">Trademarks</a></li>
+            <li><a href="#" class="report-harassment-link" data-abuse-type="harassment" target="_blank">Harassment</a></li>
+            <li><a href="#" class="report-self-harm-link" data-abuse-type="report_self_harm" target="_blank">Report self harm</a></li>
+            <li><a href="#" class="report-ads-link" data-abuse-type="report_an_ad" target="_blank">Report an ad</a></li>
           </ul>
         </div>
       </div>

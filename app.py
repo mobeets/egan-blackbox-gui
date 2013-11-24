@@ -27,6 +27,11 @@ class Root(object):
     def index(self):
         raise cherrypy.HTTPRedirect("/chapter/1")
 
+    @cherrypy.expose
+    def search(self, **data):
+        query = data['q']
+        return 'You searched for {0}'.format(query)
+
     def fake_tco_link(self):
         N = 6
         url = random.sample(string.letters, N)
@@ -39,6 +44,7 @@ class Root(object):
             print 'ERROR: {0} is not a key in all_tweets'.format(number)
             return json.dumps(["Sorry, something went wrong."])
         tweet_msgs = [tweet['text'] for tweet in reversed(self.all_tweets[number])]
+        # tweet_msgs = [''.join(['B' for i in range(140)])]
         next_number = int(number) + 1
         next_link = ''
         if next_number == self.max_number:
@@ -50,6 +56,12 @@ class Root(object):
 
     @cherrypy.expose
     def chapter(self, number=None):
+        try:
+            no = int(number)
+            if no > self.max_number:
+                raise cherrypy.HTTPRedirect("/chapter/1")
+        except:
+            raise cherrypy.HTTPRedirect("/chapter/1")
         tweet_msgs = []
         tmp = lookup.get_template(self.infile)
         return tmp.render(TITLE=TITLE, TYPED_DIV_VAL=TYPED_DIV_VAL, LINK_DIV_VAL=LINK_DIV_VAL, CHAPTER=number)

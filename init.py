@@ -3,6 +3,7 @@ from urllib2 import urlopen
 
 TWEET_URL = "https://twitter.com/nyerfiction/status/207985498579419136"
 
+CHAPTER_KEY = '${CHAPTER}'
 TITLE_KEY = '${TITLE}'
 TYPED_DIV_VAL = 'typed'
 LINK_DIV_VAL = 'tcolink'
@@ -19,7 +20,7 @@ OLD_DROPDOWN = """div class="dropdown">"""
 NEW_DROPDOWN = """div class="dropdown" style="visibility: hidden; display: none;">"""
 
 OLD_TWEET_CONTENT = """<p class="js-tweet-text tweet-text">Human beings are fiercely, primordially resilient.</p>"""
-NEW_TWEET_CONTENT = """<p class="js-tweet-text tweet-text" style="height:80px;"><span id="{0}"></span><span id="{1}"></span></p>""".format(TYPED_DIV_VAL, LINK_DIV_VAL)
+NEW_TWEET_CONTENT = """<p class="js-tweet-text tweet-text" style="height:100px;"><span id="{0}"></span><span id="{1}"></span></p>""".format(TYPED_DIV_VAL, LINK_DIV_VAL)
 
 OLD_TITLE = """<title>Twitter / NYerFiction: Human beings are fiercely, ...</title>"""
 NEW_TITLE = """<title>{0}</title>""".format(TITLE_KEY)
@@ -31,14 +32,42 @@ OLD_USERNAME = """>New Yorker Fiction<"""
 NEW_USERNAME = """>Black Box<"""
 
 OLD_HANDLE = """@</s><b>NYerFiction<"""
-NEW_HANDLE = """</s><b>Jennifer Egan<"""
+NEW_HANDLE = """</s><b>by Jennifer Egan<"""
 
-"""
-http://12factor.net/backing-services
+OLD_FOLLOW = """<i class="follow"></i> Follow"""
+NEW_FOLLOW = """<i class="follow"></i> Huh ?"""
 
-See that footer? A Prev/Next for each chapter would be nice.
+OLD_FOLLOW_BTN = """<button class="js-follow-btn follow-button btn" type="button">"""
+NEW_FOLLOW_BTN = """<button class="js-follow-btn follow-button btn" type="button" onclick="OpenInNewTab('http://blog.jehosafet.com/2013/11/jennifer-egans-black-box-full-text.html');">"""
 
-"""
+OLD_TWITTER_PROFILE = 'href="/NYerFiction"'
+NEW_TWITTER_PROFILE = 'href="http://www.newyorker.com/fiction/features/2012/06/04/120604fi_fiction_egan"'
+
+OLD_DATE = """7:03 PM - 30 May 12<"""
+NEW_DATE = """7:03 PM - 30 May 12 / via <a href="https://twitter.com/nyerfiction">@NYerFiction</a><"""
+
+OLD_REPLY = """Reply"""
+NEW_REPLY = """Pause"""
+
+OLD_FAVORITE = """Favorite"""
+NEW_FAVORITE = """Link here"""
+
+OLD_RETWEET = """Retweet"""
+NEW_RETWEET = """View tweet"""
+
+OLD_BUTTON_1 = 'title="Direct messages"'
+NEW_BUTTON_1 = 'title="Direct messages" style="visibility: hidden; display: none;"'
+
+OLD_BUTTON_2 = 'title="Compose new Tweet"'
+NEW_BUTTON_2 = 'title="Compose new Tweet" style="visibility: hidden; display: none;"'
+
+OLD_BUTTON_3 = 'href="/settings/account"'
+NEW_BUTTON_3 = 'href="https://github.com/mobeets/egan-blackbox-gui"'
+
+OLD_FOOTER = """inline-reply-tweetbox swift">"""
+NEW_FOOTER = """inline-reply-tweetbox swift"><div class="module site-footer slim-site-footer">
+  <div class="flex-module"><ul class=""><li>PREV  -</li><li>CHAPTER {0}</li><li>-  NEXT</li></ul></div></div>""".format(CHAPTER_KEY)
+
 def replace_old_new(html):
     """
     todo: fetch current twitter html, once logged-in?
@@ -51,6 +80,17 @@ def replace_old_new(html):
     html = html.replace(OLD_HANDLE, NEW_HANDLE)
     html = html.replace(OLD_TWEETER, NEW_TWEETER)
     html = html.replace(OLD_DROPDOWN, NEW_DROPDOWN)
+    html = html.replace(OLD_FOLLOW, NEW_FOLLOW)
+    html = html.replace(OLD_FOLLOW_BTN, NEW_FOLLOW_BTN)
+    html = html.replace(OLD_TWITTER_PROFILE, NEW_TWITTER_PROFILE)
+    html = html.replace(OLD_DATE, NEW_DATE)
+    html = html.replace(OLD_FAVORITE, NEW_FAVORITE)
+    html = html.replace(OLD_RETWEET, NEW_RETWEET)
+    html = html.replace(OLD_REPLY, NEW_REPLY)
+    html = html.replace(OLD_BUTTON_1, NEW_BUTTON_1)
+    html = html.replace(OLD_BUTTON_2, NEW_BUTTON_2)
+    html = html.replace(OLD_BUTTON_3, NEW_BUTTON_3)
+    html = html.replace(OLD_FOOTER, NEW_FOOTER)
     return html
     # x = urlopen(TWEET_URL)
     # y = x.readlines()
@@ -70,7 +110,7 @@ def remove_urls(html):
     """
     if len(url) > 1 and not url.startswith('//')
     """
-    regex = r'href="([^"]*")'
+    regex = r'href="([^"]*)"'
     remover = lambda match: match.group(0) if (len(match.group(1)) <= 1 or match.group(1).startswith('//') or match.group(1).startswith('http')) else 'href="' + 'https://www.twitter.com' + match.group(1) + '"'
     return re.sub(regex, remover, html)
 
@@ -85,13 +125,18 @@ def add_js_libs(html, jsfile):
 def write_template(infile, outfile, js_libs_infile):
     """
     todo:
-        . change NYerFiction title
-        . change all links to something fun
-            . add pause button, link to current message, etc.
-            . add tweet date
-        . add prev/next
-        . given url, add chapters
-            . load up actual tweet json
+        . Add buttons: Prev/Next chapters
+
+        . Pause button
+        . Link to current line
+
+        . Link to original tweet
+        . Fix tweet date: for each original tweet
+
+        . Fix Search button: filter tweets by query
+
+        . Twitter copyright?
+
     """
     html = open(infile).read()
 
