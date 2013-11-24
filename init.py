@@ -65,6 +65,7 @@ def add_js_libs(html, jsfile):
 def write_template(infile, outfile, js_libs_infile):
     """
     todo:
+        . change NYerFiction title
         . change all links to something fun
             . add pause button, link to current message, etc.
             . add tweet date
