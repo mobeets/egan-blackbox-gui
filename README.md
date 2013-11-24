@@ -2,4 +2,4 @@ Jennifer Egan's [Black Box](http://en.wikipedia.org/wiki/Black_Box_(Jennifer_Ega
 
 This web app will let you watch this story progress in a sort of simulated tweeting, using [typed.js](https://github.com/mattboldt/typed.js/).
 
-To see this code in action, go [here](http://egan-blackbox.herokuapp.com).
+To see this code in action, go [here](http://blackbox-theatre.herokuapp.com).
