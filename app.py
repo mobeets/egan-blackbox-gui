@@ -70,6 +70,10 @@ def main():
         '/js': {
             'tools.staticdir.on': True,
             'tools.staticdir.dir': 'js'
+        },
+        '/templates': {
+            'tools.staticdir.on': True,
+            'tools.staticdir.dir': 'templates'
         }
     }
 

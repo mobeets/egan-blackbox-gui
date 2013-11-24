@@ -12,11 +12,26 @@ DIV_STATS = """<ul class="stats">""", """</ul>"""
 OLD_SCRIPT = """<script src="https://abs.twimg.com/c/swift/en/init.50f1dad2666e8a8d6b901950eb366dd58226ce51.js" async></script>"""
 NEW_SCRIPT = """"""
 
+OLD_TWEETER = """>Reply to @NYerFiction"""
+NEW_TWEETER = """style="visibility: hidden; display: none;">"""
+
+OLD_DROPDOWN = """div class="dropdown">"""
+NEW_DROPDOWN = """div class="dropdown" style="visibility: hidden; display: none;">"""
+
 OLD_TWEET_CONTENT = """<p class="js-tweet-text tweet-text">Human beings are fiercely, primordially resilient.</p>"""
-NEW_TWEET_CONTENT = """<p class="js-tweet-text tweet-text"><span id="{0}"></span><span id="{1}"></span></p>""".format(TYPED_DIV_VAL, LINK_DIV_VAL)
+NEW_TWEET_CONTENT = """<p class="js-tweet-text tweet-text" style="height:80px;"><span id="{0}"></span><span id="{1}"></span></p>""".format(TYPED_DIV_VAL, LINK_DIV_VAL)
 
 OLD_TITLE = """<title>Twitter / NYerFiction: Human beings are fiercely, ...</title>"""
 NEW_TITLE = """<title>{0}</title>""".format(TITLE_KEY)
+
+OLD_BG_IMAGE = """https://abs.twimg.com/images/themes/theme1/bg.png"""
+NEW_BG_IMAGE = """/templates/bb2.jpg"""
+
+OLD_USERNAME = """>New Yorker Fiction<"""
+NEW_USERNAME = """>Black Box<"""
+
+OLD_HANDLE = """@</s><b>NYerFiction<"""
+NEW_HANDLE = """</s><b>Jennifer Egan<"""
 
 """
 http://12factor.net/backing-services
@@ -31,6 +46,11 @@ def replace_old_new(html):
     html = html.replace(OLD_TWEET_CONTENT, NEW_TWEET_CONTENT)
     html = html.replace(OLD_TITLE, NEW_TITLE)
     html = html.replace(OLD_SCRIPT, NEW_SCRIPT)
+    html = html.replace(OLD_BG_IMAGE, NEW_BG_IMAGE)
+    html = html.replace(OLD_USERNAME, NEW_USERNAME)
+    html = html.replace(OLD_HANDLE, NEW_HANDLE)
+    html = html.replace(OLD_TWEETER, NEW_TWEETER)
+    html = html.replace(OLD_DROPDOWN, NEW_DROPDOWN)
     return html
     # x = urlopen(TWEET_URL)
     # y = x.readlines()
