@@ -22,6 +22,7 @@ class Root(object):
         self.all_tweets = tweets
         self.chapter_numbers = [int(x) for x in self.all_tweets.keys()]
         self.max_number = max(self.chapter_numbers)
+        self.ntweets = dict((ch, len(ts)) for ch, ts in self.all_tweets.iteritems())
 
     @cherrypy.expose
     def index(self):
@@ -39,15 +40,16 @@ class Root(object):
         return 't.co/{0}...'.format(url)
 
     @cherrypy.expose
-    def tweets(self, number=None):
+    def tweets(self, number=None, offset=None):
         if number not in self.all_tweets:
             print 'ERROR: {0} is not a key in all_tweets'.format(number)
             return json.dumps(["Sorry, something went wrong."])
-        tweet_msgs = [tweet['text'] for tweet in reversed(self.all_tweets[number])]
+        offset = int(offset) if offset else 1
+        tweet_msgs = [tweet['text'] for tweet in reversed(self.all_tweets[number])][offset-1:]
         # tweet_msgs = [''.join(['B' for i in range(140)])]
         next_number = int(number) + 1
         next_link = ''
-        if next_number == self.max_number:
+        if next_number > self.max_number:
             tweet_msgs += ['[THE END]'.format(TITLE)]
         else:
             tweet_msgs += ['[This is the end of chapter {0}. Click the link to continue.] '.format(number, TITLE)]
@@ -55,16 +57,26 @@ class Root(object):
         return json.dumps({'tweet_msgs': tweet_msgs, 'next_link': next_link})
 
     @cherrypy.expose
-    def chapter(self, number=None):
+    def chapter(self, number=None, offset=None):
         try:
             no = int(number)
             if no > self.max_number:
                 raise cherrypy.HTTPRedirect("/chapter/1")
         except:
             raise cherrypy.HTTPRedirect("/chapter/1")
+        prev_ch = '<a href="/chapter/{0}">PREV</a> -'.format(no-1) if no > 1 else ''
+        next_ch = '- <a href="/chapter/{0}">NEXT</a>'.format(no+1) if no < self.max_number else ''
+        of = 1
+        if offset:
+            try:
+                of = int(offset)
+                if of < 1 or of > self.ntweets[number]:
+                    raise cherrypy.HTTPRedirect("/chapter/" + str(no))
+            except:
+                raise cherrypy.HTTPRedirect("/chapter/" + str(no))
         tweet_msgs = []
         tmp = lookup.get_template(self.infile)
-        return tmp.render(TITLE=TITLE, TYPED_DIV_VAL=TYPED_DIV_VAL, LINK_DIV_VAL=LINK_DIV_VAL, CHAPTER=number)
+        return tmp.render(TITLE=TITLE, TYPED_DIV_VAL=TYPED_DIV_VAL, LINK_DIV_VAL=LINK_DIV_VAL, CHAPTER=number, OFFSET=of, NEXT_CHAPTER=next_ch, PREV_CHAPTER=prev_ch)
 
 def load_tweets(infile):
     return json.load(open(infile))

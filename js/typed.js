@@ -51,6 +51,7 @@
 			this.stopArray = this.strings.length;
 		}
 
+		this.isPaused = false;
 		// All systems go!
 		this.init();
 		this.build();
@@ -70,9 +71,13 @@
 				// this.el.after("<span id=\"typed-cursor\">|</span>");
 			}
 
+			, updateStatus: function(){
+				this.isPaused = $('.typing-status').html() == 'Play ';
+				// console.log(this.isPaused);
+			}
+
 			// pass current string state to each function
 			, typewrite: function(curString, curStrPos){
-
 				// varying values for setTimeout during typing
 				// can't be global since number changes each time loop is executed
 				var humanize = Math.round(Math.random() * (100 - 30)) + this.typeSpeed;
@@ -88,6 +93,7 @@
 
 				// containg entire typing function in a timeout
 				setTimeout(function() {
+					self.updateStatus();
 
 					// make sure array position is less than array length
 					if (self.arrayPos < self.strings.length){
@@ -109,7 +115,9 @@
 						// else, keep typing
 						else{
 							// add characters one by one
-							curStrPos++;
+							if (!self.isPaused){
+								curStrPos++;
+							}
 							// loop the function
 							self.typewrite(curString, curStrPos);
 							// if the array position is at the stopping position
@@ -163,6 +171,8 @@
 					//	self.stopNum = 0;
 					// }
 
+					self.updateStatus();
+
 					// ----- continue important stuff ----- //
 					// replace text with current text + typed characters
 					self.el.text(self.text + curString.substr(0, curStrPos));
@@ -171,7 +181,9 @@
 					// less than the stop number, keep going
 					if (curStrPos > self.stopNum){
 						// subtract characters one by one
-						curStrPos--;
+						if (!self.isPaused){
+							curStrPos--;
+						}
 						// loop the function
 						self.backspace(curString, curStrPos);
 					}
