@@ -72,7 +72,7 @@ NEW_BUTTON_1 = 'title="Direct messages" style="visibility: hidden; display: none
 OLD_BUTTON_2 = 'title="Compose new Tweet"'
 NEW_BUTTON_2 = 'title="Compose new Tweet" style="visibility: hidden; display: none;"'
 
-OLD_BUTTON_3 = 'href="/settings/account"'
+OLD_BUTTON_3 = 'href="https://www.twitter.com/settings/account"'
 NEW_BUTTON_3 = 'href="https://github.com/mobeets/egan-blackbox-gui"'
 
 OLD_FOOTER = """inline-reply-tweetbox swift">"""
@@ -145,12 +145,10 @@ def add_js_libs(html, jsfile):
 def write_template(infile, outfile, js_libs_infile):
     """
     todo:
-        . Add link: "Link here", "View tweet" buttons
-            . "View tweet" -> NEW_RETWEET_BUTTON / tweet['id']
-            . "Link here" -> NEW_REPLY_BUTTON / status index
-
         . Fix tweet date: for each original tweet
         . Fix Search button: filter tweets by query
+
+        . Make static, i.e. no external links...download twitter's style stuff so it won't be effected by changes
 
     """
     html = open(infile).read()

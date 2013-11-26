@@ -46,7 +46,7 @@ class Root(object):
             return json.dumps(["Sorry, something went wrong."])
         offset = int(offset) if offset else 1
         tweet_msgs = [tweet['text'] for tweet in reversed(self.all_tweets[number])][offset-1:]
-        # tweet_msgs = [''.join(['B' for i in range(140)])]
+        tweet_urls = [tweet['url'] for tweet in reversed(self.all_tweets[number])] # keep all for head.js jquery stuff
         next_number = int(number) + 1
         next_link = ''
         if next_number > self.max_number:
@@ -54,7 +54,7 @@ class Root(object):
         else:
             tweet_msgs += ['[This is the end of chapter {0}. Click the link to continue.] '.format(number, TITLE)]
             next_link = '<a href="/chapter/{0}">{1}</a>'.format(next_number, self.fake_tco_link())
-        return json.dumps({'tweet_msgs': tweet_msgs, 'next_link': next_link})
+        return json.dumps({'tweet_msgs': tweet_msgs, 'tweet_urls': tweet_urls, 'next_link': next_link})
 
     @cherrypy.expose
     def chapter(self, number=None, offset=None):

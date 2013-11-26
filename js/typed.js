@@ -91,6 +91,9 @@
 				// }
 				// else{ self.backDelay = 500; }
 
+				// var clear = self.options.inter_callbefore();
+				// clearTimeout(clear);
+
 				// containg entire typing function in a timeout
 				setTimeout(function() {
 					self.updateStatus();
@@ -192,6 +195,7 @@
 					else if (curStrPos <= self.stopNum){
 						clearTimeout(clear);
 						var clear = self.arrayPos = self.arrayPos+1;
+						self.options.inter_callbefore(self);
 						// must pass new array position in this instance
 						// instead of using global arrayPos
 						self.typewrite(self.strings[self.arrayPos], curStrPos);
@@ -218,12 +222,16 @@
 		strings: ["These are the default values...", "You know what you should do?", "Use your own!", "Have a great day!"],
 		// typing and backspacing speed
 		typeSpeed: 0,
+		// backspacing speed
+		backTypeSpeed: 0,
 		// time before backspacing
 		backDelay: 500,
 		// loop
 		loop: false,
 		// false = infinite
 		loopCount: false,
+		// callbefore function between items in strings
+		inter_callbefore: function(){ null },
 		// ending callback function
 		callback: function(){ null }
 	}
