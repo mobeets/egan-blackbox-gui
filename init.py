@@ -145,11 +145,11 @@ def add_js_libs(html, jsfile):
 def write_template(infile, outfile, js_libs_infile):
     """
     todo:
+        . Update json by combining
         . Fix tweet date: for each original tweet
+
         . Fix Search button: filter tweets by query
-
         . Make static, i.e. no external links...download twitter's style stuff so it won't be effected by changes
-
     """
     html = open(infile).read()
 
