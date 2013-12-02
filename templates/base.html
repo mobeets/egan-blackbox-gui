@@ -1,0 +1,31 @@
+## base.html
+<meta charset="UTF-8">
+<head>
+    <title>${title}</title>
+    <link rel=StyleSheet href="/templates/styles.css" type="text/css"/>
+    <script src="/js/jquery-1.7.1.min.js"></script>
+    <%block name="header"/>
+</head>
+<body>
+    <div id="menu">
+        <div id="bar-filler">&nbsp;</div>
+        <div id="menu-items">
+            <ul>
+                <li>HOME</li>
+                <li>ME</li>
+                <li>GEAR</li>
+            </ul>
+        </div>
+        
+        <div id="bar-filler-2">&nbsp;</div>
+        <div id="search-bar">
+            <form action="/search" method="post">
+            <input name="query" type="text" placeholder="Search"></input>
+            <input type="submit" style="height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true" />
+            </form>
+        </div>
+    </div>
+    <div id="outer-wrapper">
+        ${self.body()}
+    </div>
+</body>

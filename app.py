@@ -10,6 +10,8 @@ lookup = TemplateLookup(directories=['templates'], input_encoding='utf-8')
 from init import write_template, TYPED_DIV_VAL, LINK_DIV_VAL
 
 HTML_TEMPLATE_FILE = 'index.html'
+HTML_TWEET_TEMPLATE_FILE = 'tweet.html'
+HTML_SEARCH_TEMPLATE_FILE = 'search.html'
 IN_HTML_FILE = 'templates/og_index.html'
 OUT_HTML_FILE = 'templates/' + HTML_TEMPLATE_FILE
 JS_LIBS_FILE = 'js/head.js'
@@ -29,9 +31,27 @@ class Root(object):
         raise cherrypy.HTTPRedirect("/chapter/1")
 
     @cherrypy.expose
-    def search(self, **data):
-        query = data['q']
-        return 'You searched for {0}'.format(query)
+    def search(self, query=None):
+        query = query.lower() if query else ''
+        res = {}
+        for ch, ts in self.all_tweets.iteritems():
+            ch = int(ch)
+            for i, t in enumerate(reversed(ts)):
+                if query and query in t['text']:
+                    if ch not in res:
+                        res[ch] = []
+                    res[ch].append((i, t))
+        out = 'Search results for <i>{0}</i>...<hr>'.format(query)
+        for ch in sorted(res):
+            ts = res[ch]
+            out += '<h3>{0}</h3><ul>\n'.format(ch)
+            for i, t in ts:
+                url = '/chapter/{0}/{1}'.format(ch, i+1)
+                out += u'<li>{0} <a href="{1}">[link]</a></li>\n'.format(t['text'], url)
+            out += '</ul>'
+        tmp = lookup.get_template(HTML_SEARCH_TEMPLATE_FILE)
+        print out
+        return tmp.render(title=TITLE, content=out)
 
     def fake_tco_link(self):
         N = 6
@@ -58,6 +78,28 @@ class Root(object):
 
     @cherrypy.expose
     def chapter(self, number=None, offset=None):
+        try:
+            no = int(number)
+            if no > self.max_number:
+                raise cherrypy.HTTPRedirect("/chapter/1")
+        except:
+            raise cherrypy.HTTPRedirect("/chapter/1")
+        prev_ch = '<a href="/chapter/{0}">PREV</a> -'.format(no-1) if no > 1 else ''
+        next_ch = '- <a href="/chapter/{0}">NEXT</a>'.format(no+1) if no < self.max_number else ''
+        of = 1
+        if offset:
+            try:
+                of = int(offset)
+                if of < 1 or of > self.ntweets[number]:
+                    raise cherrypy.HTTPRedirect("/chapter/" + str(no))
+            except:
+                raise cherrypy.HTTPRedirect("/chapter/" + str(no))
+        tweet_msgs = []
+        tmp = lookup.get_template(HTML_TWEET_TEMPLATE_FILE)
+        return tmp.render(title=TITLE, CHAPTER=number, OFFSET=of, NEXT_CHAPTER=next_ch, PREV_CHAPTER=prev_ch)
+
+    @cherrypy.expose
+    def chapter2(self, number=None, offset=None):
         try:
             no = int(number)
             if no > self.max_number:
