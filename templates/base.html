@@ -8,16 +8,16 @@
 </head>
 <body>
     <div id="menu">
-        <div id="bar-filler">&nbsp;</div>
+        <!-- <div id="bar-filler">&nbsp;</div> -->
         <div id="menu-items">
             <ul>
-                <li>HOME</li>
-                <li>ME</li>
-                <li>GEAR</li>
+                <li><a href="/"><img src="/static/home-icon.png" class="menu-item-icon" alt="HOME"></a></li>
+                <li><a href="https://twitter.com/jehosafet"><img src="/static/person-icon.png" class="menu-item-icon" alt="ME"></a></li>
+                <li><a href="http://blog.jehosafet.com/2013/11/jennifer-egans-black-box-full-text.html"><img src="/static/question-icon.png" class="menu-item-icon" alt="ABOUT"></a></li>
+                <li><a href="https://github.com/mobeets/egan-blackbox-gui"><img src="/static/gear-icon.png" class="menu-item-icon" alt="GEAR"></a></li>
             </ul>
         </div>
         
-        <div id="bar-filler-2">&nbsp;</div>
         <div id="search-bar">
             <form action="/search" method="post">
             <input name="query" type="text" placeholder="Search"></input>
@@ -26,6 +26,21 @@
         </div>
     </div>
     <div id="outer-wrapper">
+        <div id="top-nav-wrapper">
+            <div id="top-nav-content">
+                <table>
+                    <tr>
+                        <td>
+                            <a href="http://www.newyorker.com/fiction/features/2012/06/04/120604fi_fiction_egan"><img src="/static/nyer-icon.png" class="avatar-icon"></a>
+                        </td>
+                        <td>
+                            <div style="font-size: 18px;"><i>Black Box</i><br></div>
+                            <div style="font-size: 14px;">by Jennifer Egan</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
         ${self.body()}
     </div>
 </body>

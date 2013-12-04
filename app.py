@@ -140,6 +140,10 @@ def main():
         '/templates': {
             'tools.staticdir.on': True,
             'tools.staticdir.dir': 'templates'
+        },
+        '/static': {
+            'tools.staticdir.on': True,
+            'tools.staticdir.dir': 'static'
         }
     }
 

@@ -72,7 +72,7 @@
 			}
 
 			, updateStatus: function(){
-				this.isPaused = $('.typing-status').html() == 'Play ';
+				this.isPaused = $('.typing-status').html() == 'PLAY ';
 				// console.log(this.isPaused);
 			}
 

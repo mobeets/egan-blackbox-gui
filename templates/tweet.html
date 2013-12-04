@@ -42,16 +42,17 @@
 
         function PauseButtonClicked() {
             val = $('.typing-status').html();
-            $('.typing-status').html(val == "Play " ? play_int() : play_pause());
+            console.log(val + '.');
+            $('.typing-status').html(val == "PLAY " ? play_int() : play_pause());
         }
 
         function play_int() {
-            $('.typing-status').html("Pause");
+            $('.typing-status').html("PAUSE");
             // do play
         }
 
         function play_pause() {
-            $('.typing-status').html("Play ");
+            $('.typing-status').html("PLAY ");
             // do pause
         }
 
@@ -60,14 +61,13 @@
 
 <div id="inner-wrapper">
     <div id="content">
-        <button type="button" onclick="PauseButtonClicked();"><span class="typing-status">Pause</span></button>
         <div id="tweet_content">
             <span id="typed"></span>
             <span id="tcolink"></span>
         </div>
-        <a class="ext_link">View tweet</a>
-        <a class="local_link">Link here</a>
-        <a href="http://blog.jehosafet.com/2013/11/jennifer-egans-black-box-full-text.html">About</a>
+    <a href="#" class="pause-button" onclick="PauseButtonClicked();"><span class="typing-status">PAUSE</span></a>
+    <a class="ext_link"><img src="/static/twitter-icon.png" class="msg-icon" alt="View tweet"></a>
+    <a class="local_link"><img src="/static/link-icon.png" class="msg-icon" alt="Link here"></a>
     </div>
 </div>
 <div id="nav-wrapper">
