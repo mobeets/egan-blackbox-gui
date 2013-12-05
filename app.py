@@ -119,6 +119,10 @@ def main():
             'tools.staticdir.on': True,
             'tools.staticdir.dir': 'templates'
         },
+        '/favicon.ico': {
+            'tools.staticfile.on': True,
+            'tools.staticfile.filename': os.path.join(ROOTDIR, 'static', 'favicon.ico')
+        },
         '/static': {
             'tools.staticdir.on': True,
             'tools.staticdir.dir': 'static'
