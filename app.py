@@ -8,20 +8,13 @@ import cherrypy
 from mako.lookup import TemplateLookup
 lookup = TemplateLookup(directories=['templates'], input_encoding='utf-8')
 
-# from init import write_template, TYPED_DIV_VAL, LINK_DIV_VAL
-
-HTML_TEMPLATE_FILE = 'index.html'
 HTML_TWEET_TEMPLATE_FILE = 'tweet.html'
 HTML_SEARCH_TEMPLATE_FILE = 'search.html'
-IN_HTML_FILE = 'templates/og_index.html'
-OUT_HTML_FILE = 'templates/' + HTML_TEMPLATE_FILE
-JS_LIBS_FILE = 'js/head.js'
 TWEETS_FILE = 'blackbox.json'
 
 TITLE = '''Jennifer Egan's "Black Box"'''
 class Root(object):
-    def __init__(self, infile, tweets):
-        self.infile = infile
+    def __init__(self, tweets):
         self.all_tweets = tweets
         self.chapter_numbers = [int(x) for x in self.all_tweets.keys()]
         self.max_number = max(self.chapter_numbers)
@@ -51,7 +44,7 @@ class Root(object):
                 out += u'<li>{0} <a href="{1}">[link]</a></li>\n'.format(t['text'], url)
             out += '</ul>'
         tmp = lookup.get_template(HTML_SEARCH_TEMPLATE_FILE)
-        print out
+        # print out
         return tmp.render(title=TITLE, content=out)
 
     def fake_tco_link(self):
@@ -110,7 +103,6 @@ def load_tweets(infile):
     return json.load(open(infile))
 
 def main():
-    # write_template(IN_HTML_FILE, OUT_HTML_FILE, JS_LIBS_FILE)
     cherrypy.config.update({'server.socket_host': '0.0.0.0',})
     cherrypy.config.update({'server.socket_port': int(os.environ.get('PORT', '5000')),})
 
@@ -134,7 +126,7 @@ def main():
     }
 
     tweets = load_tweets(TWEETS_FILE)
-    cherrypy.quickstart(Root(HTML_TEMPLATE_FILE, tweets), '/', config=conf)
+    cherrypy.quickstart(Root(tweets), '/', config=conf)
 
 if __name__ == '__main__':
     main()
