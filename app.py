@@ -7,7 +7,7 @@ import cherrypy
 from mako.lookup import TemplateLookup
 lookup = TemplateLookup(directories=['templates'], input_encoding='utf-8')
 
-from init import write_template, TYPED_DIV_VAL, LINK_DIV_VAL
+# from init import write_template, TYPED_DIV_VAL, LINK_DIV_VAL
 
 HTML_TEMPLATE_FILE = 'index.html'
 HTML_TWEET_TEMPLATE_FILE = 'tweet.html'
@@ -98,33 +98,11 @@ class Root(object):
         tmp = lookup.get_template(HTML_TWEET_TEMPLATE_FILE)
         return tmp.render(title=TITLE, CHAPTER=number, OFFSET=of, NEXT_CHAPTER=next_ch, PREV_CHAPTER=prev_ch)
 
-    @cherrypy.expose
-    def chapter2(self, number=None, offset=None):
-        try:
-            no = int(number)
-            if no > self.max_number:
-                raise cherrypy.HTTPRedirect("/chapter/1")
-        except:
-            raise cherrypy.HTTPRedirect("/chapter/1")
-        prev_ch = '<a href="/chapter/{0}">PREV</a> -'.format(no-1) if no > 1 else ''
-        next_ch = '- <a href="/chapter/{0}">NEXT</a>'.format(no+1) if no < self.max_number else ''
-        of = 1
-        if offset:
-            try:
-                of = int(offset)
-                if of < 1 or of > self.ntweets[number]:
-                    raise cherrypy.HTTPRedirect("/chapter/" + str(no))
-            except:
-                raise cherrypy.HTTPRedirect("/chapter/" + str(no))
-        tweet_msgs = []
-        tmp = lookup.get_template(self.infile)
-        return tmp.render(TITLE=TITLE, TYPED_DIV_VAL=TYPED_DIV_VAL, LINK_DIV_VAL=LINK_DIV_VAL, CHAPTER=number, OFFSET=of, NEXT_CHAPTER=next_ch, PREV_CHAPTER=prev_ch)
-
 def load_tweets(infile):
     return json.load(open(infile))
 
 def main():
-    write_template(IN_HTML_FILE, OUT_HTML_FILE, JS_LIBS_FILE)
+    # write_template(IN_HTML_FILE, OUT_HTML_FILE, JS_LIBS_FILE)
     cherrypy.config.update({'server.socket_host': '0.0.0.0',})
     cherrypy.config.update({'server.socket_port': int(os.environ.get('PORT', '5000')),})
 

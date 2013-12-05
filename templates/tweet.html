@@ -43,16 +43,18 @@
         function PauseButtonClicked() {
             val = $('.typing-status').html();
             console.log(val + '.');
-            $('.typing-status').html(val == "PLAY " ? play_int() : play_pause());
+            $('.typing-status').html(val == "PLAY " ? play_it() : pause_it());
         }
 
-        function play_int() {
+        function play_it() {
             $('.typing-status').html("PAUSE");
+            $('.pause-button').css('background-image', 'url(/static/pause-icon.png)');
             // do play
         }
 
-        function play_pause() {
+        function pause_it() {
             $('.typing-status').html("PLAY ");
+            $('.pause-button').css('background-image', 'url(/static/play-icon.png)');
             // do pause
         }
 
@@ -65,7 +67,8 @@
             <span id="typed"></span>
             <span id="tcolink"></span>
         </div>
-    <a href="#" class="pause-button" onclick="PauseButtonClicked();"><span class="typing-status">PAUSE</span></a>
+    <div class="redo-button" onclick=""></div>
+    <div class="pause-button" onclick="PauseButtonClicked();"><span class="typing-status">PAUSE</span></div>
     <a class="ext_link"><img src="/static/twitter-icon.png" class="msg-icon" alt="View tweet"></a>
     <a class="local_link"><img src="/static/link-icon.png" class="msg-icon" alt="Link here"></a>
     </div>
