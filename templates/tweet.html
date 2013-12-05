@@ -46,6 +46,10 @@
             console.log(val + '.');
             $('.typing-status').html(val == "PLAY " ? play_it() : pause_it());
         }
+        function ReplayButtonClicked() {
+            val = $('.restart-status').html("RESTART");
+            console.log('Restarting.');
+        }
 
         function play_it() {
             $('.typing-status').html("PAUSE");
@@ -71,8 +75,8 @@
         <a class="local_link"><img src="/static/link-icon.png" class="msg-icon" alt="Link here"></a>
         <a class="ext_link"><img src="/static/twitter-icon.png" class="msg-icon" alt="View tweet"></a>
         <div class="via-section"><span class="date_link"></span> (via @NYerFiction)</div>
-        <div class="pause-button" onclick="PauseButtonClicked();"><span class="typing-status">PAUSE</span></div>
-        <div class="redo-button hide-children" onclick=""></div>
+        <div class="pause-button hide-children" onclick="PauseButtonClicked();"><span class="typing-status">PAUSE</span></div>
+        <div class="redo-button hide-children" onclick="ReplayButtonClicked();"><span class="restart-status"></span></div>
     </div>
 </div>
 <div id="nav-wrapper">

@@ -52,6 +52,7 @@
 		}
 
 		this.isPaused = false;
+		this.isRestart = false;
 		// All systems go!
 		this.init();
 		this.build();
@@ -73,7 +74,11 @@
 
 			, updateStatus: function(){
 				this.isPaused = $('.typing-status').html() == 'PLAY ';
-				// console.log(this.isPaused);
+				this.isRestart = $('.restart-status').html() == 'RESTART';
+			}
+
+			, resetStatus: function(){
+				$('.restart-status').html('');
 			}
 
 			// pass current string state to each function
@@ -120,6 +125,10 @@
 							// add characters one by one
 							if (!self.isPaused){
 								curStrPos++;
+							}
+							if (self.isRestart){
+								curStrPos = 0;
+								self.resetStatus();
 							}
 							// loop the function
 							self.typewrite(curString, curStrPos);
@@ -186,6 +195,10 @@
 						// subtract characters one by one
 						if (!self.isPaused){
 							curStrPos--;
+						}
+						if (self.isRestart){
+							curStrPos = curString.length;
+							self.resetStatus();
 						}
 						// loop the function
 						self.backspace(curString, curStrPos);

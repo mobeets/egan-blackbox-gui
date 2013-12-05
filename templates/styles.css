@@ -59,7 +59,7 @@ input {
     margin: 0;
 }
 .menu-item-icon:hover {
-    opacity: 0.4;
+    opacity: 0.3;
 }
 .menu-item-icon:active {
     position: relative;
