@@ -2,6 +2,7 @@ import os
 import json
 import random
 import string
+from datetime import datetime, timedelta
 
 import cherrypy
 from mako.lookup import TemplateLookup
@@ -59,6 +60,12 @@ class Root(object):
         url = ''.join(url)
         return 't.co/{0}...'.format(url)
 
+    def convert_twitter_dt_str(self, tweet):
+        t_dt_str = tweet['created_at']
+        t_dt = datetime.strptime(t_dt_str, '%a %b %d %H:%M:%S +0000 %Y')
+        t_dt = t_dt - timedelta(hours=5)
+        return t_dt.strftime('%I:%M %p, %Y %b %d')
+
     @cherrypy.expose
     def tweets(self, number=None, offset=None):
         if number not in self.all_tweets:
@@ -67,6 +74,7 @@ class Root(object):
         offset = int(offset) if offset else 1
         tweet_msgs = [tweet['text'] for tweet in reversed(self.all_tweets[number])][offset-1:]
         tweet_urls = [tweet['url'] for tweet in reversed(self.all_tweets[number])] # keep all for head.js jquery stuff
+        tweet_dt_strs = [self.convert_twitter_dt_str(tweet) for tweet in reversed(self.all_tweets[number])]
         next_number = int(number) + 1
         next_link = ''
         if next_number > self.max_number:
@@ -74,7 +82,7 @@ class Root(object):
         else:
             tweet_msgs += ['[This is the end of chapter {0}. Click the link to continue.] '.format(number, TITLE)]
             next_link = '<a href="/chapter/{0}">{1}</a>'.format(next_number, self.fake_tco_link())
-        return json.dumps({'tweet_msgs': tweet_msgs, 'tweet_urls': tweet_urls, 'next_link': next_link})
+        return json.dumps({'tweet_msgs': tweet_msgs, 'tweet_urls': tweet_urls, 'tweet_dt_strs': tweet_dt_strs, 'next_link': next_link})
 
     @cherrypy.expose
     def chapter(self, number=None, offset=None):

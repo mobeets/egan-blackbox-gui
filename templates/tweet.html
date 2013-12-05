@@ -11,6 +11,7 @@
                     // index is 1-based
                     $('.local_link').attr('href', '/chapter/${CHAPTER}/' + index);
                     $('.ext_link').attr('href', data['tweet_urls'][index-1]);
+                    $('.date_link').html(data['tweet_dt_strs'][index-1]);
                 }
                 UpdateTweetUrlsByIndex(${OFFSET});
                 $("#typed").typed({
@@ -67,10 +68,11 @@
             <span id="typed"></span>
             <span id="tcolink"></span>
         </div>
-    <div class="redo-button" onclick=""></div>
-    <div class="pause-button" onclick="PauseButtonClicked();"><span class="typing-status">PAUSE</span></div>
-    <a class="ext_link"><img src="/static/twitter-icon.png" class="msg-icon" alt="View tweet"></a>
-    <a class="local_link"><img src="/static/link-icon.png" class="msg-icon" alt="Link here"></a>
+        <a class="local_link"><img src="/static/link-icon.png" class="msg-icon" alt="Link here"></a>
+        <a class="ext_link"><img src="/static/twitter-icon.png" class="msg-icon" alt="View tweet"></a>
+        <div class="via-section"><span class="date_link"></span> (via @NYerFiction)</div>
+        <div class="pause-button" onclick="PauseButtonClicked();"><span class="typing-status">PAUSE</span></div>
+        <div class="redo-button hide-children" onclick=""></div>
     </div>
 </div>
 <div id="nav-wrapper">
