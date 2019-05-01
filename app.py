@@ -16,9 +16,9 @@ TITLE = '''Jennifer Egan's "Black Box"'''
 class Root(object):
     def __init__(self, tweets):
         self.all_tweets = tweets
-        self.chapter_numbers = [int(x) for x in self.all_tweets.keys()]
+        self.chapter_numbers = [int(x) for x in list(self.all_tweets.keys())]
         self.max_number = max(self.chapter_numbers)
-        self.ntweets = dict((ch, len(ts)) for ch, ts in self.all_tweets.iteritems())
+        self.ntweets = dict((ch, len(ts)) for ch, ts in self.all_tweets.items())
 
     @cherrypy.expose
     def index(self):
@@ -28,7 +28,7 @@ class Root(object):
     def search(self, query=None):
         query = query.lower() if query else ''
         res = {}
-        for ch, ts in self.all_tweets.iteritems():
+        for ch, ts in self.all_tweets.items():
             ch = int(ch)
             for i, t in enumerate(reversed(ts)):
                 if query and query in t['text']:
@@ -41,7 +41,7 @@ class Root(object):
             out += '<h3>{0}</h3><ul>\n'.format(ch)
             for i, t in ts:
                 url = '/chapter/{0}/{1}'.format(ch, i+1)
-                out += u'<li>{0} <a href="{1}">[link]</a></li>\n'.format(t['text'], url)
+                out += '<li>{0} <a href="{1}">[link]</a></li>\n'.format(t['text'], url)
             out += '</ul>'
         tmp = lookup.get_template(HTML_SEARCH_TEMPLATE_FILE)
         # print out
@@ -62,7 +62,7 @@ class Root(object):
     @cherrypy.expose
     def tweets(self, number=None, offset=None):
         if number not in self.all_tweets:
-            print 'ERROR: {0} is not a key in all_tweets'.format(number)
+            print('ERROR: {0} is not a key in all_tweets'.format(number))
             return json.dumps(["Sorry, something went wrong."])
         offset = int(offset) if offset else 1
         tweet_msgs = [tweet['text'] for tweet in reversed(self.all_tweets[number])][offset-1:]
