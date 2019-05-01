@@ -49,7 +49,7 @@ class Root(object):
 
     def fake_tco_link(self):
         N = 6
-        url = random.sample(string.letters, N)
+        url = random.sample(string.ascii_letters, N)
         url = ''.join(url)
         return 't.co/{0}...'.format(url)
 
